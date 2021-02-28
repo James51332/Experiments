@@ -1,4 +1,4 @@
-# Learning Projects
+# Expirements
 
 This is a compilation of projects I wrote to test different features in c++. They aren't necesarily useful but somebody may find them helpful.
 
