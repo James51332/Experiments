@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <memory.h>
+#include <iostream>
+#include <cstdlib>
+#include <memory>
+using namespace std;
 
 // Step 0: Retrieve info about array (pass location by reference to change for user. this could be replicated using int** in c)
 void resize(int*& arrayLocation, int curSize, int newSize) {
@@ -22,21 +23,25 @@ int main() {
   int size = 10;
   int* array = (int*) malloc(sizeof(int) * size);
  
-  printf("Creating array with %d elements.\n", size);
+  cout << "Creating array with " << size << " elements." << endl;
   for (int i = 0; i < size; i++) {
-    array[i] = i;
-    printf("%d\n", array[i]);
+    array[i] = i + 1;
+    cout << array[i];
+    if (i + 1 < size) cout << ", ";
   }
+  cout << endl;
 
   int newSize = 12;
-  printf("Resizing array to %d elements\n", newSize);
+  cout << "Resizing array to " << newSize << " elements." << endl;
   
   resize(array, size, newSize);
   size = newSize; 
   for (int i = 0; i < size; i++) {
-    array[i] = i;
-    printf("%d\n", array[i]);
+    array[i] = i + 1;
+    cout << array[i];
+    if (i + 1 < size) cout << ", ";
   } 
+  cout << endl;
 
   free(array);
 }
