@@ -20,7 +20,7 @@ void resize(int*& arrayLocation, int curSize, int newSize) {
 
 int main() {
   int size = 10;
-  int* array = (int*) malloc(sizeof(int) * 10);
+  int* array = (int*) malloc(sizeof(int) * size);
  
   printf("Creating array with %d elements.\n", size);
   for (int i = 0; i < size; i++) {
