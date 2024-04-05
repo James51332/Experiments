@@ -47,7 +47,7 @@ struct fourier
   // number of samples in the period
   float samples;
 
-  // we'll convert between these two matrics
+  // we'll convert between these two vectors
   vector<complex> amplitudes;
   vector<complex> timeValues;
 };
