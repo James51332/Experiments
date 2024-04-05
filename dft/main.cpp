@@ -6,6 +6,9 @@ using namespace std;
 struct complex {
   float real;
   float imag;
+
+  complex(float a = 0.0f, float b = 0.0f)
+    : real(a), imag(b) {}
 };
 
 inline complex operator+(const complex &one, const complex &two)
@@ -70,7 +73,7 @@ void inverseTransform(fourier& fourier)
     {
       // the evalution point for the angle is going to be equal to the
       // root number * basis * freq (roots need to move freq times as fast as freq of 1)
-      complex pos = eulers(basis * root * (freq+1));
+      complex pos = eulers(basis * root * freq);
 
       // add the wave component to the time domain (both real and imag parts)
       value += fourier.amplitudes[freq] * pos;
@@ -121,8 +124,9 @@ void fourierTransform(fourier& fourier)
 int main()
 {
   fourier fourier;
-  fourier.timeValues = { {3.0f, 3.0f}, {0.0f, 0.0f}, {3.0f, 0.0f}, {0.0f, 3.0f} };
+  fourier.timeValues = { {3.0f, 0.0f}, {3.0f, 3.0f}, {0.0f, 3.0f}, {0.0f, 0.0f}};
 
+  cout << "Performing Fourier Transform:" << endl;
   fourierTransform(fourier);
 
   for (auto value : fourier.amplitudes)
@@ -130,5 +134,13 @@ int main()
     float length = sqrt(value.real * value.real + value.imag * value.imag);
     float angle = atan2(value.imag, value.real) * 180.0f / M_PI;
     cout << length << ":" << angle << endl;
+  }
+
+  cout << endl << "Performing Inverse Fourier Transform:" << endl;
+  inverseTransform(fourier);
+
+  for (auto value : fourier.timeValues)
+  {
+    cout << value.real << " + " << value.imag << "i" << endl;
   }
 }
